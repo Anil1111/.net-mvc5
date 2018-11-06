@@ -6,19 +6,26 @@
     <title>@ViewBag.Title - SportsStore</title>
     <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/main.css" rel="stylesheet" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse" role="navigation">
+    <div class="navbar navbar-inverse headNavbar" role="navigation">
         <a class="navbar-brand" href="#">SPORTS STORE</a>
+        @Html.Action("Summary","Cart")
     </div>
-    <div class="row panel">
-        <div id="categories" class="col-xs-3">
-            @Html.Action("Menu", "Nav")
-        </div>
-        <div class="col-xs-8">
-            @RenderBody()
+   
+    <div class="row panel mainDIV" >
+        <div class="subMainDIV">
+            <div>
+                <div id="categories" class="col-xs-3">
+                    @Html.Action("Menu", "Nav")
+                </div>
+                <div class="col-xs-9">
+                    @RenderBody()
 
+                </div>
+            </div>
         </div>
     </div>
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
