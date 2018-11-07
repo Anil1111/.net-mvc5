@@ -1,11 +1,17 @@
-﻿div .headNavbar {
+﻿.navbar-right{
+    float:right !important;
+    margin-right:15px;
+    margin-left:15px;
+}
+
+/*div .headNavbar {
     margin: 0 2px;
 }
 
 div .subMainDIV {
     width: 70%;
     margin: 0 auto;
-}
+}*/
 
 .field-validation-error{
     color:#f00;
@@ -15,9 +21,9 @@ div .subMainDIV {
     display:none
 
 }
-.field-validation-error{
-    border:1px solid #f00;
-    background-color:#fee;
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
 }
 .validation-summary-errors{
     font-weight:bold;

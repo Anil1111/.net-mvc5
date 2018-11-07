@@ -8,24 +8,32 @@
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/main.css" rel="stylesheet" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
 </head>
 <body>
-    <div class="navbar navbar-inverse headNavbar" role="navigation">
-        <a class="navbar-brand" href="#">SPORTS STORE</a>
-        @Html.Action("Summary","Cart")
+    <div class="navbar navbar-inverse" role="navigation">
+        <a class="navbar-brand" href="#">
+            <span class="hidden-xs">SPORTS STORE</span>
+            <div class="visible-xs"> SPORTS</div>
+            <div class="visible-xs"> STORE</div>
+        </a>
+        @Html.Action("Summary", "Cart")
     </div>
-   
-    <div class="row panel mainDIV" >
-        <div class="subMainDIV">
-            <div>
-                <div id="categories" class="col-xs-3">
-                    @Html.Action("Menu", "Nav")
-                </div>
-                <div class="col-xs-9">
-                    @RenderBody()
 
-                </div>
-            </div>
+    <div class="row panel mainDIV">
+        @* 小设备用标签式分类菜单 *@
+        <div class="visible-xs">
+            @Html.Action("Menu","Nav",new { horizontalLayout = true})
+
+        </div>
+        @* 大菜单用边栏菜单 *@
+        <div id="categories" class="col-sm-3 hidden-xs">
+            @Html.Action("Menu", "Nav")
+        </div>
+        <div class="col-xs-12 col-sm-8">
+            @RenderBody()
+
+
         </div>
     </div>
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>

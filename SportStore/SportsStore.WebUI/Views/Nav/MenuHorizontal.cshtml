@@ -1,0 +1,17 @@
+﻿@model IEnumerable<string>
+
+@* 如果是小型设备，就加载这个标签式分类菜单 *@
+<div class="btn-group btn-group-sm btn-group-justified">
+
+    @Html.ActionLink("Home", "List","Product",null, new { @class = "btn btn-default btn-sm" + (ViewBag.SelectedCategory == null ? " btn-primary" : "") })
+
+    @foreach (var link in Model)
+    {
+        @Html.RouteLink(link,
+                        new  {controller="Product", action="List", category=link, page=1 },
+                        new {@class="btn  btn-default btn-sm" + (link==ViewBag.SelectedCategory ?" btn-primary":"") })
+    }
+
+</div>
+
+
