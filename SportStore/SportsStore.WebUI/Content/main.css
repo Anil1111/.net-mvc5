@@ -6,3 +6,23 @@ div .subMainDIV {
     width: 70%;
     margin: 0 auto;
 }
+
+.field-validation-error{
+    color:#f00;
+
+}
+.field-validation-valid{
+    display:none
+
+}
+.field-validation-error{
+    border:1px solid #f00;
+    background-color:#fee;
+}
+.validation-summary-errors{
+    font-weight:bold;
+    color:#f00;
+}
+.validation-summary-valid{
+    display:none;
+}

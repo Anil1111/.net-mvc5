@@ -148,7 +148,7 @@ namespace SportsStore.UnitTests
 
             Cart cart = new Cart();
 
-            CartController target = new CartController(mock.Object);
+            CartController target = new CartController(mock.Object,null);
 
             //Action
             target.AddToCart(cart, 1, null);
@@ -170,7 +170,7 @@ namespace SportsStore.UnitTests
 
             Cart cart = new Cart();
 
-            CartController target = new CartController(mock.Object);
+            CartController target = new CartController(mock.Object,null);
 
             //Action
             RedirectToRouteResult result = target.AddToCart(cart, 2, "myUrl");
@@ -185,13 +185,87 @@ namespace SportsStore.UnitTests
         {
             Cart cart = new Cart();
 
-            CartController target = new CartController(null);
+            CartController target = new CartController(null,null);
 
             CartIndexViewModel result = (CartIndexViewModel)target.Index(cart, "myUrl").Model;
 
             //Assert
             Assert.AreSame(result.Cart, cart);
             Assert.AreEqual(result.ReturnUrl, "myUrl");
+        }
+
+        [TestMethod]
+        public void Cannot_Checkout_Empty_Cart()
+        {
+            Mock<IOrderProcessor> mock = new Mock<IOrderProcessor>();
+
+            Cart cart = new Cart();
+
+            ShippingDetails shippingDetails = new ShippingDetails();
+
+            CartController target = new CartController(null, mock.Object);
+
+            //Action
+            ViewResult result = target.Checkout(cart, shippingDetails);
+
+            //Assert 检查，订单没有传递给处理器
+            mock.Verify(t => t.ProcessOrder(It.IsAny<Cart>(), It.IsAny<ShippingDetails>()),Times.Never);
+            //Assert 检查，方法返回默认视图
+            Assert.AreEqual("", result.ViewName);
+            //Assert 检查，非法模型
+            Assert.AreEqual(false, result.ViewData.ModelState.IsValid);
+        }
+
+
+        [TestMethod]
+        public void Cannot_Checkout_Invalid_ShippingDetails()
+        {
+            Mock<IOrderProcessor> mock = new Mock<IOrderProcessor>();
+
+            Cart cart = new Cart();
+            cart.AddItem(new Product(), 1);
+
+           
+
+            CartController target = new CartController(null, mock.Object);
+            //把错误添加到模型
+            target.ModelState.AddModelError("error", "error");
+
+            //Action 试图结算
+            ViewResult result = target.Checkout(cart, new ShippingDetails());
+
+            //Assert 检查，订单没有传递给处理器
+            mock.Verify(t => t.ProcessOrder(It.IsAny<Cart>(), It.IsAny<ShippingDetails>()), Times.Never);
+            //Assert 检查，方法返回默认视图
+            Assert.AreEqual("", result.ViewName);
+            //Assert 检查，非法模型
+            Assert.AreEqual(false, result.ViewData.ModelState.IsValid);
+        }
+
+
+        [TestMethod]
+        public void Can_Checkout_And_Submit_Order()
+        {
+            Mock<IOrderProcessor> mock = new Mock<IOrderProcessor>();
+
+            Cart cart = new Cart();
+            cart.AddItem(new Product(), 1);
+
+
+
+            CartController target = new CartController(null, mock.Object);
+            
+            
+
+            //Action 试图结算
+            ViewResult result = target.Checkout(cart, new ShippingDetails());
+
+            //Assert 检查，订单已经被处理
+            mock.Verify(t => t.ProcessOrder(It.IsAny<Cart>(), It.IsAny<ShippingDetails>()), Times.Once);
+            //Assert 检查，方法返回Completed视图
+            Assert.AreEqual("Completed", result.ViewName);
+            //Assert 检查，把有效模型传递给视图
+            Assert.AreEqual(true, result.ViewData.ModelState.IsValid);
         }
     }
 }

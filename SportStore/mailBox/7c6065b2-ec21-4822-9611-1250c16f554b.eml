@@ -1,0 +1,17 @@
+X-Sender: sportsstore@example.com
+X-Receiver: orders@example.com
+MIME-Version: 1.0
+From: sportsstore@example.com
+To: orders@example.com
+Date: 7 Nov 2018 18:33:51 +0800
+Subject: New order submitted!
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+
+QSBuZXcgb3JkZXIgaGFzIGJlZW4gc3VibWl0dGVkDQotLS0NCkl0ZW1zOg0KMXhUaGlu
+a2luZyBjYXAoc3VidG90YWw6IMKlMTYuMDApMXhVbnN0ZWFkeSBDaGFpcihzdWJ0b3Rh
+bDogwqUyOS45NSkxeEh1bWFuIENoZXNzKHN1YnRvdGFsOiDCpTc1LjAwKTF4TGlmZWph
+Y2tldChzdWJ0b3RhbDogwqU0OC45NSkxeFN0YWRpdW0oc3VidG90YWw6IMKlNzksNTAw
+LjAwKTN4Q29ybmVyIEZsYWdzKHN1YnRvdGFsOiDCpTEwNC44NSlUb3RhbCBvcmRlciB2
+YWx1ZTogwqU3OSw3NzQuNzUtLS0NClNoaXAgdG86DQpDaHJpcw0KYWFhIHJvYWQNCg0K
+DQpTSA0KU0gNCkNoaW5hDQoyMDA0MzMNCi0tLQ0KR2lmdCB3cmFwOiBObw==
