@@ -120,5 +120,28 @@ namespace SportsStore.UnitTests
             //Assert确认方法的结果类型
             Assert.IsInstanceOfType(result, typeof(ViewResult));
         }
+
+        [TestMethod]
+        public void Can_Delete_Valid_Products()
+        {
+            //Arrange Product
+            Product product = new Product { ProductId = 2, Name = "Test" };
+            //Arrange
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            mock.Setup(t => t.Products).Returns(new Product[] {
+            new Product{ProductId=1,Name="P1"},
+            product,
+            new Product{ProductId=3,Name="P3"}
+
+         
+            });
+            AdminController target = new AdminController(mock.Object);
+
+
+            target.Delete(product.ProductId);
+
+            mock.Verify(t => t.DeleteProduct(product.ProductId),Times.Once());
+
+        }
     }
 }

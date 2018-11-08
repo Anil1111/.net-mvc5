@@ -17,7 +17,7 @@ namespace SportsStore.Domain.Entities
         [DataType(DataType.MultilineText)]
         [Required(ErrorMessage = "Please enter a product description")]
         public string Description { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please enter a product price")]
         [Range(0.01,double.MaxValue,ErrorMessage ="Please enter a positive price")]
         public decimal Price { get; set; }
         [Required(ErrorMessage ="Please specify a category")]

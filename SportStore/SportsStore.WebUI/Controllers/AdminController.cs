@@ -9,6 +9,7 @@ using SportsStore.Domain.Entities;
 
 namespace SportsStore.WebUI.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private IProductRepository repositpry;
@@ -44,7 +45,23 @@ namespace SportsStore.WebUI.Controllers
                 return View(product);
             }
         }
-        
+
+        public ViewResult Create()
+        {
+            return View("Edit", new Product());
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int productid)
+        {
+            Product delProduct = repositpry.DeleteProduct(productid);
+            if(delProduct!=null)
+            {
+                TempData["message"] = string.Format($"{delProduct.Name} was deleted");
+
+            }
+            return RedirectToAction("Index");
+        }
 
     }
 }

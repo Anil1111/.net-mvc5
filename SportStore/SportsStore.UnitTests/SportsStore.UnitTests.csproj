@@ -104,6 +104,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminSecurity.cs" />
     <Compile Include="AdminTests.cs" />
     <Compile Include="App_Start\Ninject.Web.Common.cs" />
     <Compile Include="CartTests.cs" />
