@@ -102,9 +102,16 @@ namespace UrlsAndRoutes.Tests
             TestRouteMatch("~/Customer", "Customer", "Index");
             TestRouteMatch("~/Customer/List", "Customer", "List");
 
+            TestRouteMatch("~/Customer/List/All", "Customer", "List",new { id="All"});
+            TestRouteMatch("~/Customer/List/All/Delete", "Customer", "List", new { id = "All",catchall="Delete" });
+            TestRouteMatch("~/Customer/List/All/Delete/Perm", 
+                "Customer", 
+                "List", 
+                 new { id = "All", catchall = "Delete/Perm" });
+
             //确保太多或太少的片段数不会匹配
-            
-            TestRouteFail("~/Customer/List/All");
+
+           // TestRouteFail("~/Customer/List/All/Delete");
         }
     }
 }

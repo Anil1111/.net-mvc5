@@ -4,24 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace UrlsAndRoutes.Controllers
+namespace UrlsAndRoutes.AdditionalController
 {
     public class HomeController : Controller
     {
         // GET: Home
         public ActionResult Index()
         {
-            ViewBag.Controller = "Home";
+            ViewBag.Controller = "AdditionalController.Controller";
             ViewBag.Action = "Index";
             return View("ActionName");
-        }
-
-        public ActionResult CustomVariable(string id="DefaultId")
-        {
-            ViewBag.Controller = "Home";
-            ViewBag.Action = "CustomVariable";
-            ViewBag.CustomVariable =id;
-            return View();
         }
     }
 }
