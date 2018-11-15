@@ -23,5 +23,13 @@ namespace UrlsAndRoutes.Controllers
             ViewBag.CustomVariable =id;
             return View();
         }
+
+        public ViewResult MyActionMethod()
+        {
+            //在Action里面利用Url.Action生成URL
+            string myActionUrl = Url.Action("Index", new { id = "MyID" });
+            string myRouteUrl = Url.RouteUrl(new { controller = "Home", action = "Index" });
+            return View();
+        }
     }
 }

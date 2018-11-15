@@ -16,5 +16,15 @@
     <div>
         The Aciton is :@ViewBag.Action
     </div>
+    <div>
+        @*生成绝对链接地址*@
+        @Html.ActionLink("This is an outgoing URL", "Index","Home","https","Myserver.Mydomain.com","myFragmentName", new { id = "MyId" },new{id="myAnchorID", @class="myCSSClass"})
+    </div>
+    <div>
+        @Html.ActionLink("This targets another controller","Index","Customer")
+    </div>
+    <div>
+        This is a URL: @Url.Action("Index","Home",new { id="MyId"})
+    </div>
 </body>
 </html>

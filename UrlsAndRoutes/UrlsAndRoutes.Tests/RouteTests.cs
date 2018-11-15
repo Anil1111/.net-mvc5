@@ -92,26 +92,26 @@ namespace UrlsAndRoutes.Tests
 
 
 
-        [TestMethod]
-        public void TestInComingRoutes()
-        {
-            //对我们希望接受的URL进行检查
-            TestRouteMatch("~/","Home", "Index");
+        //[TestMethod]
+        //public void TestInComingRoutes()
+        //{
+        //    //对我们希望接受的URL进行检查
+        //    TestRouteMatch("~/","Home", "Index");
 
-            //检查通过片段获取的值
-            TestRouteMatch("~/Customer", "Customer", "Index");
-            TestRouteMatch("~/Customer/List", "Customer", "List");
+        //    //检查通过片段获取的值
+        //    TestRouteMatch("~/Customer", "Customer", "Index");
+        //    TestRouteMatch("~/Customer/List", "Customer", "List");
 
-            TestRouteMatch("~/Customer/List/All", "Customer", "List",new { id="All"});
-            TestRouteMatch("~/Customer/List/All/Delete", "Customer", "List", new { id = "All",catchall="Delete" });
-            TestRouteMatch("~/Customer/List/All/Delete/Perm", 
-                "Customer", 
-                "List", 
-                 new { id = "All", catchall = "Delete/Perm" });
+        //    TestRouteMatch("~/Customer/List/All", "Customer", "List",new { id="All"});
+        //    TestRouteMatch("~/Customer/List/All/Delete", "Customer", "List", new { id = "All",catchall="Delete" });
+        //    TestRouteMatch("~/Customer/List/All/Delete/Perm", 
+        //        "Customer", 
+        //        "List", 
+        //         new { id = "All", catchall = "Delete/Perm" });
 
-            //确保太多或太少的片段数不会匹配
+        //    //确保太多或太少的片段数不会匹配
 
-           // TestRouteFail("~/Customer/List/All/Delete");
-        }
+        //   // TestRouteFail("~/Customer/List/All/Delete");
+        //}
     }
 }

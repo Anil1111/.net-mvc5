@@ -18,7 +18,7 @@ namespace UrlsAndRoutes.Controllers
             return View("ActionName");
         }
 
-        [Route("Add/{user}/{id:int}")]        //约束id的类型
+        [Route("Add/{user}/{id:int}",Name ="AddRoute")]        //约束id的类型，给这条属性路由定义名称
         public string Create(string user,int id)
         {
             return $"User: {user}, ID: {id}";
