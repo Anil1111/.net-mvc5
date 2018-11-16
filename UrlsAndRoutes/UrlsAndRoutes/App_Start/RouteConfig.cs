@@ -13,21 +13,46 @@ namespace UrlsAndRoutes
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.MapMvcAttributeRoutes();
+            routes.RouteExistingFiles = true;
+
+            routes.MapMvcAttributeRoutes(); //开启属性路由
+
+            routes.IgnoreRoute("Content/{filename}.html");//不允许绕过路由
+
+            //在C:\Windows\System32\inetsrv\Config找到IIS的配置文件applicationHost.config
+            //在<modules>里面找到<add name="UrlRoutingModule-4.0" type="System.Web.Routing.UrlRoutingModule" preCondition="managedHandler,runtimeVersionv4.0" />
+            //修改成<add name="UrlRoutingModule-4.0" type="System.Web.Routing.UrlRoutingModule" preCondition="" />
+            //这个修改告诉IIS在对磁盘文件的请求到达MVC路由之前，不要对它进行拦截.
+            //如果没有匹配这个URL的控制器和Action，会报错
+            //本路由就是为磁盘文件设置的路由
+            routes.MapRoute("DiskFile", "Content/StaticContent.html",
+                            new { controller = "Customer", action = "List" });
+
+
+
+            //当请求/SayHello时，会使用CustomRouteHandler并且调用CustomHttpHandler返回Hello
+            routes.Add(new Route("SayHello", new CustomRouteHandler()));
+            
             routes.Add(new LegacyRoute(
                 "~/articles/Windows_3.1_Overview.html", 
                 "~/old/.NET_1.0_Class_Library"));
 
+            //添加了Admin Area以后，如果访问/Home/Index会报错，因为路由系统发现两个Home控制器。
+            //Area中的路由会默认加上在本命名空间的约束，所以用Area的路由访问不会报错而这里会报错
+            //为了解决Area路由的命名空间冲突，需要将主控制器命名空间优先
             routes.MapRoute(
                "MyRoute",
-               "{controller}/{action}"
-          
+               "{controller}/{action}",
+               null,
+               new[] { "UrlsAndRoutes.Controllers" }  //为了解决Area路由的命名空间冲突，需要将主控制器命名空间优先
+
                );
             //使用Html.RouteLink("xxx","MyOtherRoute","Index","Customer")即可跳过上面的路由，而采用这条路由
             routes.MapRoute(
                  "MyOtherRoute",
                  "App/{action}",
-                 new { controller = "Home"}
+                 new { controller = "Home"},
+                 new[] { "UrlsAndRoutes.Controllers" }  //为了解决Area路由的命名空间冲突，需要将主控制器命名空间优先
                 );
 
 
