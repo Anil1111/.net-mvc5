@@ -8,6 +8,7 @@ using System.Web.Routing;
 
 namespace ControllerExtensibility.Infrastructure
 {
+    //自定义Controller激活器
     public class CustomControllerActivator : IControllerActivator
     {
         public IController Create(RequestContext requestContext, Type controllerType)

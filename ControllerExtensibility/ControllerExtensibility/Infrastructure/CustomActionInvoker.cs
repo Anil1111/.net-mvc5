@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace ControllerExtensibility.Infrastructure
 {
+    //自定义Actrion调用器
     public class CustomActionInvoker : IActionInvoker
     {
         public bool InvokeAction(ControllerContext controllerContext, string actionName)

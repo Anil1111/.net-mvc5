@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace ControllerExtensibility.Infrastructure
 {
-    //自定义动作方法选择器
+    //使用内建动作调用器，可以自定义动作方法选择器
     public class LocalAttribute : ActionMethodSelectorAttribute
     {
         //调用器根据名称丢掉一些方法
