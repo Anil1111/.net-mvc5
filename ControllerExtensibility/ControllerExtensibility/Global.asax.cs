@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ControllerExtensibility.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +14,13 @@ namespace ControllerExtensibility
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            //注册自定义控制器工厂
+            //ControllerBuilder.Current.SetControllerFactory(new CustomControllerFactory());
+
+            //为内建控制器工厂注册控制器激活器CustomControllerActivator
+            ControllerBuilder.Current.SetControllerFactory(new DefaultControllerFactory(new CustomControllerActivator()));
+
         }
     }
 }
