@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControllerExtensibility", "ControllerExtensibility\ControllerExtensibility.csproj", "{4510815E-75D2-43E3-AE78-2177F8F23050}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControllerExtensibility.Tests", "ControllerExtensibility.Tests\ControllerExtensibility.Tests.csproj", "{6C46B017-DDE6-4683-8665-78788251E396}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4510815E-75D2-43E3-AE78-2177F8F23050}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4510815E-75D2-43E3-AE78-2177F8F23050}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4510815E-75D2-43E3-AE78-2177F8F23050}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4510815E-75D2-43E3-AE78-2177F8F23050}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C46B017-DDE6-4683-8665-78788251E396}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C46B017-DDE6-4683-8665-78788251E396}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C46B017-DDE6-4683-8665-78788251E396}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C46B017-DDE6-4683-8665-78788251E396}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6FC4A200-6F57-44F2-BEC3-DCB0FD772B1C}
+	EndGlobalSection
+EndGlobal
