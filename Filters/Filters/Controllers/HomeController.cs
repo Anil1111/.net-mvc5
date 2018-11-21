@@ -1,6 +1,7 @@
 ﻿using Filters.Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Web;
@@ -10,6 +11,7 @@ namespace Filters.Controllers
 {
     public class HomeController : Controller
     {
+        private Stopwatch timer;
         [Authorize(Users="admin")]
         public string Index()
         {
@@ -38,11 +40,26 @@ namespace Filters.Controllers
         }
 
         //[CustomAction]
-        [ProfileAction]
+        //[ProfileAll]
+        //[ProfileAction]
+        //[ProfileResult]
         public string FilterTest()
         {
             Thread.Sleep(2000);
             return "This is the FilterTest action";
+        }
+
+        //控制器也实现了IActionFilter和IResultFilter接口，可以直接在控制器里面重写下面的两个方法
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            timer = Stopwatch.StartNew();
+        }
+
+        protected override void OnResultExecuted(ResultExecutedContext filterContext)
+        {
+            timer.Stop();
+            filterContext.HttpContext.Response.Write(
+                $"<div>Total elapsed time:{timer.Elapsed.TotalSeconds:F6}</div>");
         }
     }
 }
