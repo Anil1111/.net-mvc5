@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "List";
+    Layout = null;
+}
+
+<h3>This is the /View/Common/List.cshtml View</h3>
+<div>@Html.Partial("MyPartial")</div>
+<div>
+    @Html.Partial("MyStronglyTypePartial",new[] { "Apple","Orange","Pear"})
+</div>
+<div>
+    @* 调用子动作 *@
+    @Html.Action("Time")
+</div>
+<div>
+    @{
+        Html.RenderPartial("Time",DateTime.Now);
+    }
+</div>
+
+<div>
+    @{
+        Html.RenderAction("Time");
+    }
+
+</div>
