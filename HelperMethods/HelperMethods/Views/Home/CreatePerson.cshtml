@@ -2,31 +2,45 @@
 
 @{
     ViewBag.Title = "CreatePerson";
+    Html.EnableClientValidation(false);//关闭客户端验证
 }
 
-<h2>CreatePerson</h2>
+<h2>CreatePerson: @Html.LabelForModel() </h2>
 
 @using (Html.BeginRouteForm("FormRoute", new { }, FormMethod.Post, new { @class = "personClass", data_formType = "person" }))
 {
-    <div class="dataElem">
-        <label>PersonId</label>
-        @Html.TextBoxFor(m=>m.PersonId)
-    </div>
-    <div class="dataElem">
-        <label>First Name</label>
-        @Html.TextBoxFor(m=>m.FirstName)
-    </div>
+    @*<div class="dataElem">
+            <label>PersonId</label>
+            @Html.Editor("PersonId")
+        </div>
+        <div class="dataElem">
+            <label>First Name</label>
+            @Html.Editor("FirstName")
+        </div>
 
-    <div class="dataElem">
-        <label>Last Name</label>
+        <div class="dataElem">
+            <label>Last Name</label>
 
-        @Html.TextBoxFor(m => m.LastName)
-    </div>
-    <div class="dataElem">
-        <label>Role</label>
+            @Html.EditorFor(m => m.LastName)
+        </div>
+        <div class="dataElem">
+            <label>Role</label>*@
 
-      @Html.DropDownListFor(m=>m.Role,new SelectList(Enum.GetNames(typeof(HelperMethods.Models.Role))))
+    @*@Html.DropDownListFor(m=>m.Role,new SelectList(Enum.GetNames(typeof(HelperMethods.Models.Role))))*@
+    @*@Html.EditorFor(m => m.Role)*@
+    @*</div>
+        <div class="dataElem">
+            <label>Birth Date</label>
+
+            @Html.EditorFor(m => m.BirthDate)
+        </div>*@
+    <div class="column">
+        @Html.EditorForModel()
     </div>
-    <input type="submit" value="Submit" />
-}
+    <div class="column">
+        @* 复杂类型需要单独渲染 *@
+        @Html.EditorFor(m => m.HomeAddress)
+    </div>
+        <input type="submit" value="Submit" />
+        }
 

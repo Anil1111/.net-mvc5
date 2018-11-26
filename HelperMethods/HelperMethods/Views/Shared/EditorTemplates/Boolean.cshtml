@@ -1,0 +1,16 @@
+﻿@model bool?
+
+
+@* 这个自定义的boolean模板会覆盖内建的默认模板，即不会出现复选框了 *@
+@if(ViewData.ModelMetadata.IsNullableValueType && Model == null)
+{
+    @:(True) (False)<b>(Not Set)</b>
+}
+else if(Model.Value)
+{
+    @:<b>(True)</b> (False) (Not Set)
+}
+else
+{
+    @:(True) <b>(False)</b> (Not Set)
+}
