@@ -1,0 +1,79 @@
+﻿@using HelperMethods.Models
+@model string
+
+@{
+    ViewBag.Title = "GetPeople";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    AjaxOptions ajaxOpts = new AjaxOptions
+    {
+        UpdateTargetId = "tableBody",
+        Url = Url.Action("GetPeopleData"),//为了避免某些用户的浏览器关闭JS，所以在此生成url，如果浏览器关闭js，会自动用同步提交
+        LoadingElementId="loading",       //提交后反馈给用户的提示
+        LoadingElementDuration=1000,
+        Confirm="Do you wish to request new data?",  //提交后让用户确认
+
+        //下面对应的Ajax的回调函数
+        OnBegin= "OnBegin",
+        OnSuccess= "OnSuccess",
+        OnFailure= "OnFailure",
+        OnComplete= "OnComplete",
+
+    };
+}
+
+<script>
+    function OnBegin() {
+        alert("This is the OnBegin Callback")
+    }
+    function OnSuccess(data) {
+        alert("This is the OnSuccess Callback: "+data)
+    }
+    function OnFailure(data) {
+        alert("This is the OnFailure Callback: "+data)
+    }
+    function OnComplete(request, status) {
+        alert("This is the OnComplete Callback: " + status)
+    }
+</script>
+
+<h2>GetPeople</h2>
+<div id="loading" class="load" style="display:none">
+    <p>Loading Data...</p>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>
+                First
+            </th>
+            <th>
+                Last
+            </th>
+            <th>
+                Role
+            </th>
+        </tr>
+    </thead>
+    <tbody id="tableBody">
+
+        @Html.Action("GetPeopleData", new { selectedRole = Model }) @* 这一句是用来第一次加载显示内容的。submit后会把异步获得的数据覆盖进来 *@
+    </tbody>
+</table>
+
+@using (Ajax.BeginForm(ajaxOpts))
+{
+    <div>
+        @Html.DropDownList("selectedRole", new SelectList(new[] { "All" }.Concat(Enum.GetNames(typeof(Role)))))
+        <button type="submit">Submit</button>
+    </div>
+}
+
+<div>
+    @foreach(var item in Enum.GetNames(typeof(Role)))
+    {
+        <div class="ajaxLink">
+           
+            @Ajax.ActionLink(item, "GetPeople", new { selectedRole = item }, new AjaxOptions { UpdateTargetId = "tableBody", Url=Url.Action("GetPeopleData",new { selectedRole=item}) })
+        </div>
+    }
+</div>
