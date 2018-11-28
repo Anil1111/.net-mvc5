@@ -10,13 +10,13 @@
         Url = Url.Action("GetPeopleData"),//为了避免某些用户的浏览器关闭JS，所以在此生成url，如果浏览器关闭js，会自动用同步提交
         LoadingElementId="loading",       //提交后反馈给用户的提示
         LoadingElementDuration=1000,
-        Confirm="Do you wish to request new data?",  //提交后让用户确认
+        //Confirm="Do you wish to request new data?",  //提交后让用户确认
 
         //下面对应的Ajax的回调函数
-        OnBegin= "OnBegin",
-        OnSuccess= "OnSuccess",
-        OnFailure= "OnFailure",
-        OnComplete= "OnComplete",
+        //OnBegin= "OnBegin",
+        OnSuccess= "processData",
+        //OnFailure= "OnFailure",
+        //OnComplete= "OnComplete",
 
     };
 }
@@ -33,6 +33,15 @@
     }
     function OnComplete(request, status) {
         alert("This is the OnComplete Callback: " + status)
+    }
+
+    function processData(data) {
+        var target = $("#tableBody");
+        target.empty();
+        for (var i = 0; i < data.length; i++) {
+            var person = data[i];
+            target.append("<tr><td>" + person.FirstName + "</td><td>" + person.LastName + "</td><td>" + person.Role +"</td></tr>")
+        }
     }
 </script>
 
@@ -73,7 +82,7 @@
     {
         <div class="ajaxLink">
            
-            @Ajax.ActionLink(item, "GetPeople", new { selectedRole = item }, new AjaxOptions { UpdateTargetId = "tableBody", Url=Url.Action("GetPeopleData",new { selectedRole=item}) })
+            @Ajax.ActionLink(item, "GetPeopleData", new { selectedRole = item }, new AjaxOptions { Url=Url.Action("GetPeopleData", new { selectedRole=item}), OnSuccess= "processData" })
         </div>
     }
 </div>
