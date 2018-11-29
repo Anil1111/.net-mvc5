@@ -51,9 +51,36 @@ namespace MvcModels.Controllers
         }
 
         //绑定自定义模型类型集合
-        public ActionResult Address(IList<AddressSummary> addresses)
+        //public ActionResult Address(IList<AddressSummary> addresses)
+        //{
+        //    addresses=addresses?? new List<AddressSummary>();
+        //    return View(addresses);
+        //}
+
+
+        //手工调用绑定过程
+        public ActionResult Address(FormCollection formData)//FormCollection实现了IValueProvider接口
         {
-            addresses=addresses?? new List<AddressSummary>();
+            IList<AddressSummary> addresses = new List<AddressSummary>();
+            UpdateModel(addresses);
+            //try
+            //{
+            //    UpdateModel(addresses, formData);//设定绑定模型的唯一数据源为表单
+            //}
+            //catch(InvalidOperationException ex)
+            //{
+            //    //给用户提供反馈
+            //}
+
+            //或者用TryUpdateModel，成功返回True，不成功返回False
+            //if(TryUpdateModel(addresses, formData))
+            //{
+            //    //正常处理
+            //}
+            //else
+            //{
+            //    //给用户反馈
+            //}
             return View(addresses);
         }
     }

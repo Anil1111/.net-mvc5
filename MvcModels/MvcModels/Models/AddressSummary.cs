@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MvcModels.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,7 @@ namespace MvcModels.Models
     //[Bind(Prefix ="HomeAddress")标明绑定的字段有HomeAddress前缀
     //Exclude是设置模型绑定器不要绑定Country属性
     //[Bind(Prefix = "HomeAddress", Exclude = "Country")]
+    [ModelBinder(typeof(AddressSummaryBinder))]//可以在模型上用注解直接调用自定义模型绑定器
     public class AddressSummary
     {
         public string City { get; set; }
