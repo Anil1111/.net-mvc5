@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MvcModels.Infrastructure;
+using MvcModels.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +15,8 @@ namespace MvcModels
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            //ValueProviderFactories.Factories.Insert(0, new CustomValueProviderFactory());//注册自定义值提供器
+           // ModelBinders.Binders.Add(typeof(AddressSummary), new AddressSummaryBinder()); //注册自定义模型绑定器
         }
     }
 }
