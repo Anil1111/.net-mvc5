@@ -1,0 +1,18 @@
+﻿@model ModelValidation.Models.Appointment
+
+@{
+    ViewBag.Title = "Make A Booking";
+}
+
+<h2>Book An Appointment</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true) @*显示模型级别的错误，属性级别的错误写到字段附近，用Html.ValidationMessageFor *@
+    <p>Your name: @Html.EditorFor(t => t.ClientName)</p>
+    <p>@Html.ValidationMessageFor(t => t.ClientName)</p>
+    <p>Appointment Date: @Html.EditorFor(t => t.Date)</p>
+    <p>@Html.ValidationMessageFor(t => t.Date)</p>
+    <p>@Html.EditorFor(t => t.TermsAccepted) I accept the terms & conditions</p>
+    <p>@Html.ValidationMessageFor(t => t.TermsAccepted)</p>
+    <input type="submit" value="Make Booking" />
+}
