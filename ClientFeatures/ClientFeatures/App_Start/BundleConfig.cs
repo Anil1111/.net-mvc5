@@ -7,6 +7,7 @@ using System.Web.Optimization;
 namespace ClientFeatures//注意命名空间
 {
     //自定义捆绑包，必须安装microsoft.AspNet.Web.Optimization包
+    //还需要在Global.asax中注册
     public class BundleConfig
     {
         public static void RegisterBundles(BundleCollection bundles)
