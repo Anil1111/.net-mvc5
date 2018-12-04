@@ -67,13 +67,13 @@ namespace MvcModels.Controllers
             //{
             //    UpdateModel(addresses, formData);//设定绑定模型的唯一数据源为表单
             //}
-            //catch(InvalidOperationException ex)
+            //catch (InvalidOperationException ex)
             //{
             //    //给用户提供反馈
             //}
 
-            //或者用TryUpdateModel，成功返回True，不成功返回False
-            //if(TryUpdateModel(addresses, formData))
+            ////或者用TryUpdateModel，成功返回True，不成功返回False
+            //if (TryUpdateModel(addresses, formData))
             //{
             //    //正常处理
             //}
